@@ -1,0 +1,36 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ProyectoFinalMAUI.ViewModels"
+             x:Class="ProyectoFinalMAUI.Views.MainPage"
+             Title="Principal">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="15" Spacing="10">
+        <!-- Función Nativa (Geolocalización) -->
+        <Button Text="Obtener Geolocalización" Command="{Binding ObtenerUbicacionCommand}" />
+        <Label Text="{Binding UbicacionTexto}" HorizontalOptions="Center" />
+
+        <!-- Cargar Datos de API/Local -->
+        <Button Text="Cargar Datos" Command="{Binding CargarDatosCommand}" />
+
+        <!-- Indicador de carga -->
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="Blue" />
+
+        <!-- CollectionView para listado -->
+        <CollectionView ItemsSource="{Binding Items}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="0,5">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=IrADetalleCommand}" CommandParameter="{Binding .}" />
+                        </Frame.GestureRecognizers>
+                        <Label Text="{Binding Nombre}" FontAttributes="Bold" />
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

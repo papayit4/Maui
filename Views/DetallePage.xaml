@@ -1,0 +1,15 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:ProyectoFinalMAUI.ViewModels"
+             x:Class="ProyectoFinalMAUI.Views.DetallePage"
+             Title="Detalle">
+
+    <ContentPage.BindingContext>
+        <vm:DetalleViewModel />
+    </ContentPage.BindingContext>
+
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="{Binding Item.Nombre}" FontSize="24" FontAttributes="Bold" />
+        <Label Text="{Binding Item.Descripcion}" FontSize="16" />
+    </VerticalStackLayout>
+</ContentPage>
